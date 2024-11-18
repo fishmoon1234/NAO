@@ -52,12 +52,12 @@ class MS_Loss(nn.Module):
 
         # to generate continuous W^P
         self.kernel = DenseNet([1, 32, 64, 1], torch.nn.LeakyReLU)
-        self.kernelf = nn.Parameter(torch.randn(1), requires_grad=True).double().cpu()
+        self.kernelf = nn.Parameter(torch.randn(1).double().cpu(), requires_grad=True)
         # to generate normalization, to enable cross-resolution generalization
         self.fnw = DenseNet([1, 32, 64, 1], torch.nn.LeakyReLU)
         self.fnb = DenseNet([1, 32, 64, 1], torch.nn.LeakyReLU)
-        self.gamma = nn.Parameter(torch.randn(1), requires_grad=True).double().cpu()
-        self.beta = nn.Parameter(torch.randn(1), requires_grad=True).double().cpu()
+        self.gamma = torch.nn.Parameter(torch.randn(1).double().cpu(), requires_grad=True)
+        self.beta = torch.nn.Parameter(torch.randn(1).double().cpu(), requires_grad=True)
 
         for i in range(self.head):
             for j in range(self.nlayer):
